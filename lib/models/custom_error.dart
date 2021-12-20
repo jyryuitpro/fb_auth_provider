@@ -12,7 +12,6 @@ class CustomError extends Equatable {
   });
 
   @override
-  // TODO: implement props
   List<Object?> get props => [
     code,
     message,
