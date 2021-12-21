@@ -26,7 +26,7 @@ class AuthRepository {
       await usersRef.doc(signedInUser.uid).set({
         'name': name,
         'email': email,
-        'profileimage': 'https://picsum.photos/300',
+        'profileImage': 'https://picsum.photos/300',
         'point': 0,
         'rank': 'bronze',
       });
