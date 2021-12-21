@@ -23,7 +23,7 @@ class AuthRepository {
       final fbAuth.UserCredential userCredential = await firebaseAuth
           .createUserWithEmailAndPassword(email: email, password: password);
       final signedInUser = userCredential.user!;
-      await userRef.doc(signedInUser.uid).set({
+      await usersRef.doc(signedInUser.uid).set({
         'name': name,
         'email': email,
         'profileimage': 'https://picsum.photos/300',

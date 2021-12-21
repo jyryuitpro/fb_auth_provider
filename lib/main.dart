@@ -4,9 +4,11 @@ import 'package:fb_auth_provider/pages/signin_page.dart';
 import 'package:fb_auth_provider/pages/signup_page.dart';
 import 'package:fb_auth_provider/pages/splash_page.dart';
 import 'package:fb_auth_provider/providers/auth/auth_provider.dart';
+import 'package:fb_auth_provider/providers/profile/profile_provider.dart';
 import 'package:fb_auth_provider/providers/signin/signin_provider.dart';
 import 'package:fb_auth_provider/providers/signup/signup_provider.dart';
 import 'package:fb_auth_provider/repositories/auth_repository.dart';
+import 'package:fb_auth_provider/repositories/profile_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart' as fbAuth;
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -29,6 +31,11 @@ class MyApp extends StatelessWidget {
           create: (context) => AuthRepository(
             firebaseFirestore: FirebaseFirestore.instance,
             firebaseAuth: fbAuth.FirebaseAuth.instance,
+          ),
+        ),
+        Provider<ProfileRepository>(
+          create: (context) => ProfileRepository(
+            firebaseFirestore: FirebaseFirestore.instance,
           ),
         ),
         StreamProvider<fbAuth.User?>(
@@ -54,6 +61,11 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<SignupProvider>(
           create: (context) => SignupProvider(
             authRepository: context.read<AuthRepository>(),
+          ),
+        ),
+        ChangeNotifierProvider<ProfileProvider>(
+          create: (context) => ProfileProvider(
+            profileRepository: context.read<ProfileRepository>(),
           ),
         ),
       ],
